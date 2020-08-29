@@ -13,7 +13,7 @@ engine = pyttsx3.init('sapi5')
 client = wolframalpha.Client('your_id')
 
 voices = engine.getProperty('voices')
-engine.setProperty('voice' ,voices[0].id)
+engine.setProperty('voice' ,voices[1].id)
 
 def speak(audio):
     print('Computer: ' + audio)
@@ -35,39 +35,39 @@ greetMe()
 
 #speak("what\'s the password")
 #k=str(input("password:"))
-#if "your_password" in k:
-#    speak("welcome back ,  sir")
+#if "even dead i am the hero" in k:
+ #   speak("welcome back , sir")
 #else:
-#    sys.exit()
+ #   sys.exit()
 
 
 speak('what can i do for you , sir')
 
 def myCommand():
-
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
+   
+    r = sr.Recognizer()                                                                                   
+    with sr.Microphone() as source:                                                                       
         print("Listening...")
         r.pause_threshold =  0.3
         audio = r.listen(source)
     try:
         query = r.recognize_google(audio, language='en-in')
         print('User: ' + query + '\n')
-
+        
     except sr.UnknownValueError:
         speak('Sorry sir! I didn\'t get that! Try typing the command!')
         query = str(input('Command: '))
 
     return query
-
+        
 
 if __name__ == '__main__':
 
     while True:
-
+    
         query = myCommand()
         query = query.lower()
-
+        
         if 'open youtube' in query:
             speak('okay')
             webbrowser.open('www.youtube.com')
@@ -102,13 +102,13 @@ if __name__ == '__main__':
               print(d/t)
             if "^" in k:
               print(d**t)
-
+            
 
         elif 'nothing' in query or 'abort' in query or 'stop' in query or 'no' in query:
             speak('okay')
             speak('Bye Sir, have a good day.')
             sys.exit()
-
+           
         elif 'hello' in query:
             speak('Hello Sir')
 
@@ -116,25 +116,19 @@ if __name__ == '__main__':
             speak('Bye Sir, have a good day.')
             sys.exit()
 
-        elif "change your voice" in query:
-            os.startfile('jarvis.py')
-            sys.exit
+        elif 'change your voice' in query:
+            os.startfile('friday.py')                            
+            sys.exit()
 
         elif "make a list" in query:
             speak("ok sir")
             k = str(input("what is the item:"))
             speak("things added")
 
-        elif "add items in my list" in query:
-            speak("ok sir")
-            d=str(input("what is the new item:"))
-            speak("things added")
 
         elif "what\'s in my list" in query or "what is in my list" in query:
             speak("now telling list items")
-
-
-
+            speak(k)
 
         else:
             query = query
@@ -146,19 +140,20 @@ if __name__ == '__main__':
                     speak('WOLFRAM-ALPHA says - ')
                     speak('Got it.')
                     speak(results)
-
+                    
                 except:
                     results = wikipedia.summary(query, sentences=2)
                     speak('Got it.')
                     speak('WIKIPEDIA says - ')
                     speak(results)
-
+        
             except:
                 webbrowser.open('www.google.com')
-
+        
         speak('anything else that i can do for you , sir')
         if "yes" in query:
             speak('ok , sir')
         elif "no" in query:
             speak("ok sir . have a good day")
             sys.exit
+
